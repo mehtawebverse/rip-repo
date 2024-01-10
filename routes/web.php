@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 // Route::post('fetch-states',[DropdownController::class,'fetchState'])->name('states');
 // Route::post('fetch-cities',[DropdownController::class,'fetchCity'])->name('cities');
 
-Route::get('/', function () {
-    return view('obituary-form');
-});
+// Route::get('/', function () {
+//     return view('admin.adminDash');
+// });
 
+Route::get('/',[Controller::class,'adminDashboard']);
+Route::get('obituary-form',[Controller::class,'obForm'])->name('routeToObituaryForm');
 // Route::get('/',[Controller::class,'loadFirst']);
 
 Route::post('adding-ob',[ObituaryController::class,'store'])->name('routeToSubmitObituary');

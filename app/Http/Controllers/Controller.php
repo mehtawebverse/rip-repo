@@ -20,4 +20,11 @@ class Controller extends BaseController
     //     return view("add",compact("allCountries","allStates","allCities"));
         
     // }
+
+    public function adminDashboard(){
+        return view('admin.adminDash');
+    }
+    public function obForm(){
+        return view('obituary-form');
+    }
 }
