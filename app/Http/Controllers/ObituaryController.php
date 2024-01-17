@@ -19,6 +19,7 @@ class ObituaryController extends Controller
             'full_name' => 'required|string',
             'profession' => 'required|string',
             'birth_date' => 'required|date',
+            'birth_country'=>'required|string',
             'birth_place' => 'required|string',
             'lived_places' => 'nullable|string',
             'death_date' => 'required|date',
@@ -32,6 +33,9 @@ class ObituaryController extends Controller
         $storingObj->full_name = $request->full_name;
         $storingObj->profession = $request->profession;
         $storingObj->birth_date = $request->birth_date;
+
+        
+        $storingObj->birth_country = ucfirst($request->birth_country);
         $storingObj->birth_place = $request->birth_place;
         $storingObj->lived_places = $request->lived_places;
         $storingObj->death_date = $request->death_date;
@@ -127,6 +131,14 @@ class ObituaryController extends Controller
         $data = Obituary::findorFail($id);
         $data->delete();
         return redirect()->back();
+    }
+
+
+    public function clickedObituary($id)
+    {
+        $obit = Obituary::findorFail($id);
+        // return view('obituary-page');
+        return view ('obituary-page',compact('obit'));
     }
 
 }

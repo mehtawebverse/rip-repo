@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('profession')->default('NULL');
             $table->date('birth_date');
+            $table->string('birth_country');
             $table->string('birth_place');
             $table->string('lived_places')->default('NULL');
             $table->string('photo');

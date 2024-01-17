@@ -24,8 +24,12 @@
         <label for="birth_date">Birth Date:</label>
         <input type="date" id="birth_date" name="birth_date"><br>
 
+        <label for="birth_place">Birth Country:</label>
+        <input type="text" id="birth_country" name="birth_country" placeholder="Country"><br>  
+
+
         <label for="birth_place">Birth Place:</label>
-        <input type="text" id="birth_place" name="birth_place" placeholder="City,State,Country"><br>  
+        <input type="text" id="birth_place" name="birth_place" placeholder="City,State"><br>  
 
 
         <label for="lived_places">Lived Places:</label>
