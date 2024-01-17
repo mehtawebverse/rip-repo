@@ -8,13 +8,13 @@ body{
     font-family: 'Mukta Malar', sans-serif;
 }
 
-header{
+/* header{
     width:100%;
     height:88px;
     background-color: aqua;
     position:fixed;
     z-index:1 ;
-}
+} */
 
 .topwar{
     width:100%;
@@ -129,7 +129,10 @@ align-items: center;
 .creat-btn{
     width: 133px;
     height: 33px;
-    border-radius: 2px;
+
+    border-radius: 5px;
+    font-size: 14.5px;
+    letter-spacing: 0.5px;
     border: none;
     color: white;
     background-color: #FF4437;
@@ -137,25 +140,25 @@ align-items: center;
     cursor: pointer;
 }
 
-main{
+/* main{
     width: 100%;
     background-color:#F1F1F1;
     position: absolute;
     
-}
+} */
 
-.content-box{
+/* .content-box{
     width: 1034px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     background-color:#F1F1F1;
 
-}
+} */
 
 /* BOX1  CSS */
 
-
+/* 
 .box1{
     background-color: #edf3ff;
     padding: 10px;
@@ -166,13 +169,13 @@ main{
     margin: 108px 0px 20px;
     text-align: center;
 
-}
+} */
 
-.box1-heading1{
+/* .box1-heading1{
     color: #007bff!important;
     font-size: 24px;
     font-weight: 300;
-}
+} */
 
 .number{
     font-size: 30px;
@@ -409,7 +412,7 @@ margin-top: 9px;
 .table1-head{
     width: 100%;
     height: 105px;
-    background-image: url(image/yellow\ shape.png);
+    background-image: url('/img/yellow\ shape.png');
     background-repeat: no-repeat;
     background-position: bottom;
     margin-top: 2px;
@@ -427,7 +430,7 @@ margin-top: 9px;
 .table1-green-head{
     width: 100%;
     height: 105px;
-    background-image: url(image/green\ shape.png);
+    background-image: url('/img/green\ shape.png');
     background-repeat: no-repeat;
     background-position: bottom;
     margin-top: 2px;
