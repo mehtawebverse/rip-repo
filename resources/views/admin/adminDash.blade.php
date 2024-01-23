@@ -6,5 +6,6 @@
 
 <button> <a href="{{route('routeToObituaryForm')}}"> Add Obituary </a></button>
 <button> <a href="{{route('routeToViewObituaries')}}"> View Obituary </a></button>
+<button> <a href="{{route('home')}}"> Feeds </a></button>
 
 @endsection

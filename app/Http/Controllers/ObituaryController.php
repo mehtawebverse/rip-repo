@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Obituary;
 use Illuminate\Http\Request;
+use App\Models\Tribute;
+use App\Models\Photo;
 
 class ObituaryController extends Controller
 {
@@ -33,7 +35,7 @@ class ObituaryController extends Controller
         $storingObj->full_name = $request->full_name;
         $storingObj->profession = $request->profession;
         $storingObj->birth_date = $request->birth_date;
-
+        $storingObj->religion = $request->religion;
         
         $storingObj->birth_country = ucfirst($request->birth_country);
         $storingObj->birth_place = $request->birth_place;
@@ -138,6 +140,7 @@ class ObituaryController extends Controller
     {
         $obit = Obituary::findorFail($id);
         // return view('obituary-page');
+        
         return view ('obituary-page',compact('obit'));
     }
 

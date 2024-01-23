@@ -13,4 +13,9 @@ class Tribute extends Model
     {
         return $this->belongsTo(Obituary::class);
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }

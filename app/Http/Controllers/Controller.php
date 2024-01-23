@@ -41,4 +41,16 @@ class Controller extends BaseController
         return view('feeds', compact('obit','recentObituaries','countryCounts'));
     }
 
+    public function testing ()
+    {
+
+        return view('card-page');
+    }
+
+
+public function newHome()
+{
+    return view('newHome');
+}
+
 }

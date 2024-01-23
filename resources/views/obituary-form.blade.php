@@ -18,6 +18,9 @@
         <label for="full_name">Full Name:</label>
         <input type="text" id="full_name" name="full_name" ><br>
 
+        <label for="religion">Religion:</label>
+        <input type="text" id="religion" name="religion"><br>
+
         <label for="profession">Profession:</label>
         <input type="text" id="profession" name="profession"><br>
 

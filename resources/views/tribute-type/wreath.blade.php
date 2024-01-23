@@ -1,4 +1,19 @@
+@extends('layouts.app')
 
+@section('title','post-wreath')
+
+@section('internal-css')
+<style>
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Mukta Malar', sans-serif;
+}
 
 .main-body{
     width: 100%;
@@ -7,7 +22,7 @@
     justify-content: center;
     align-items: center;
     height: 107%;
-    background-image: url('/img/bacgroung-image.png');
+    background-image: url(image/bacgroung-image.png);
     background-repeat: no-repeat;
     background-size:contain;
    }
@@ -300,3 +315,71 @@ input[type=text]:focus {
         padding: 10px;
     }
 }
+
+    </style>
+@endsection
+
+@section('content')
+
+<div class="main-body">
+    <div class="left"></div>
+    <div class="content-box">
+        <div class="heading-box1"><p>Post a Tribute (Letter)</p>
+            <a href="card_page.html"><img src='{{asset("img/cutt-icone.png")}}' alt="" width="20px"></a>
+        </div>
+        <div class="heading-box2">
+            <div class="box2-heading-box1">
+                <img src="{{ asset('uploads/' . $obituary->photo) }}" alt="" width="70px">
+                <div class="name-box">
+                    <p style="font-size: 20px;">{{$obituary->full_name}}</p>
+                    <p>{{ \Carbon\Carbon::parse($obituary->birth_date)->format('Y') }}-{{ \Carbon\Carbon::parse($obituary->death_date)->format('Y') }}</p>
+                    <p>{{$obituary->birth_place}},{{$obituary->birth_country}}</p>
+                </div>
+            </div>
+            <a href="TRIBUTE PAGE.HTML"><button class="box2-btn">Tribute</button></a>
+        </div>
+
+        <form method="POST" action="{{ route('routeToSubmitWreath', $obituary->id) }}">
+
+        <div class="heading-box3">
+            <p>Choose a card design</p>
+            <p style="font-size: 14px;  color: #5e5e5e">Show your love and presence to mark your condolences.</p>
+        </div>
+        <div class="heading-box4">
+            <p>Tribute Message</p>
+            <p style="font-size: 14px;  color: #5e5e5e">Simply send a tribute message in your own words or select from our library.</p></p>
+        </div>
+        <div class="heading-box5">
+            <textarea name="message" id="message" rows="5" placeholder="Simply send a tribute message in your own words or select from our library."></textarea>
+            <div class="box5-smallbox">
+                <a class="smallbox-link1" href=""><img src='{{asset("img/library-icone.png")}}' alt="" width="20px"><p style="margin-left: 10px;">Our Library</p></a>
+                <a class="smallbox-link1" href=""><button class="smallbox-btn">Clear</button></a>
+            </div>
+            <p style="font-size: 12px; color: #5e5e5e;">Max 2000 characters allowed</p>
+        </div>
+        <div class="heading-box6">
+            <p>Tribute by</p>
+            <p  style="font-size: 14px; color: #5e5e5e;">Choose how you want your name to appear on the tribute.</p>
+            <input type="text" id="name" name="name" placeholder="Your Name">
+            <input type="text" id="relation" name="relation" placeholder="Organization or Address or Relation">
+            <input type="text" id="country" name="country" placeholder="Country">
+
+        </div>
+        <div class="heading-box7">
+            <div class="box7-smallbox1">
+                <button class="btn">Preveiw</button>
+                <a href="card_page.html"><button class="btn2">Change Tribute Type</button></a>
+            </div>
+            <div class="box7-smallbox2">
+                <a class="box7-link" href="card_page.html"><p>Back</p></a>
+                <a href="continue_page.html"><button class="btn3">Continue</button></a>
+            </div>
+
+        </div>
+        </form>
+
+ </div>
+ <div class="right"></div>
+ </div>
+
+@endsection
