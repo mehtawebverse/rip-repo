@@ -1,22 +1,32 @@
+  {{-- <link rel="stylesheet" href="{{asset('css/header-footer.css')}}">  --}}
 
-{{-- <link rel="stylesheet" href="{{asset('css/header-footer.css')}}">  --}}
+
+  <style>
+    .allhead{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 
 
-<style>
 
-.topwar{
+.topbar{
     width:100%;
     height:32px;
     background-color: white;
 }
 
-.nav{
+
+input[type=text]:focus {
+    outline: none;
+  }
+.fav{
     height: 56px;
     width: 100%;
     background-color: #202F4F;
 }
 
-.topbox{
+.topboxx{
     width:1034;
     /* border: 1px solid black; */
     height:32px;
@@ -28,7 +38,7 @@
     align-items: center;
 }
 
-.dropdown{
+.droppdown{
     margin-left:-2px;
 }
 #language{
@@ -39,32 +49,29 @@
     font-family: 'Mukta Malar', sans-serif;
 }
 
-ul{
+
+
+.topfist{
+    display: flex;
     list-style: none;
 }
 
-.toplist{
-    display: flex;
-}
-
-a{
-    text-decoration: none;
-}
 
 
-.top-list{
+.top-fist{
     padding: 0 0 0 39px;
 }
 
 
-.top-link{
+.top-fink{
  color: #1c1c1c;
     font-size: 12px;
+    text-decoration: none;
     text-align: center;
     font-weight:500;
 }
 
-.nav-box{
+.fav-box{
 width:1034px;
 height:56px;
 display:block;
@@ -76,7 +83,7 @@ justify-content: space-between;
 align-items: center;
 }
 
-.search-war{
+.search-bar{
     width:350px;
     height:32px;
     border-radius:2px;
@@ -86,17 +93,16 @@ align-items: center;
     border:none;
 }
 
-.search-icone{
+.search-icon{
     /* background-color: #FF4437; */
     padding: 0 16px;
     margin-left: -33px;
-    background-image: url(image/searchicone.png);
+    background-image: url('/img/searchicone.png');
     background-size:20px;
-    background-position: 4px 7px;
+    background-position: 4px 6px;
     background-repeat: no-repeat;
 }
-
-.browse-btn{
+.browse-butt{
     width: 74px;
     margin: 0 17px;
     height: 30px;
@@ -108,15 +114,18 @@ align-items: center;
     cursor: pointer;
 }
 
-.browse-btn:hover{
+.browse-butt:hover{
     background-color: #FF4437;
     color:white;
 }
 
-.creat-btn{
+.creat-butt{
     width: 133px;
     height: 33px;
-    border-radius: 2px;
+
+    border-radius: 5px;
+    font-size: 14.5px;
+    letter-spacing: 0.5px;
     border: none;
     color: white;
     background-color: #FF4437;
@@ -124,14 +133,44 @@ align-items: center;
     cursor: pointer;
 }
 
+
+
+/* MOBILE fav CSS */
+.mob-fav{
+    width: 100%;
+    height: 100vh;
+    background-color: #1c1c1c;
+    color: white;
+    text-align: center;
+    display: none;
+    position: absolute;
+    margin-top: -1;
+}
+
+.mob-fist{
+    padding: 44px;
+}
+
+.mob-fink{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mob-butt{
+    display: none;
+}
+
     </style>
 
 
-    <!-- TOPWAR   HTML -->
-    <div class="topwar">
-        <div class=topbox>
+
+  <div class="allhead">
+    <header>
+    <div class="topbar">
+        <div class=topboxx>
             <div class="lefttop">
-                <form class="dropdown" action="">
+                <form class="droppdown" action="">
                     <select name="Language" id="Language">
                         <option value="English">English</option>
                         <option value="Tamil">Tamil</option>
@@ -140,61 +179,54 @@ align-items: center;
 
             </div>
             <div class="righttop">
-                <ul class="toplist">
-                    <li class="top-list"><a class="top-link" href="#">Product</a></li>
-                    <li class="top-list"><a class="top-link" href="#">Pricing</a></li>
-                    <li class="top-list"><a class="top-link" href="#">Contact Us</a></li>
-                    <li class="top-list"><a class="top-link" href="#">Help</a></li>
+                <ul class="topfist">
+                    <li class="top-fist"><a class="top-fink" href="#">Product</a></li>
+                    <li class="top-fist"><a class="top-fink" href="pricing.html">Pricing</a></li>
+                    <li class="top-fist"><a class="top-fink" href="Contact.html">Contact Us</a></li>
+                    <li class="top-fist"><a class="top-fink" href="Contact.html">Help</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <!-- TOWAR   HTML END -->
-
-
-    <!-- NAVBAR     HTML -->
-    <div class="nav">
-        <div class="nav-box">
-            <div class="left-nav">
-                <img class="mob-btn" src="{{asset('img/bar.png')}}" alt="" width="30px">
-                <a href="#"><img src="{{asset('img/logo.png')}}" alt="logo" width="156px"></a>
+    <div class="fav">
+        <div class="fav-box">
+            <div class="left-fav">
+                <img class="mob-butt" src='{{asset("img/bar.png")}}' alt="" width="30px">
+               
+                <a href="{{ auth()->user() && auth()->user()->id === 1 ? route('adminHome') : route('home') }}">
+                    
+                    <img class="logo" src='{{asset("img/logo.png")}}' alt="logo" width="156px"></a>
             </div>
-            <div class="center-nav">
-                <input class="search-war" type="text" placeholder="Search a Person"><span class="search-icone"><img
+
+            <div class="center-fav">
+                <input class="search-bar" type="text" placeholder="Search a Person"><span class="search-icon"><img
                         src="" alt=""></span>
-                <a href="#"><button class=" browse-btn">Browse</button></a>
+                <a href="BROWSE PAGE.HTML"><button class=" browse-butt">Browse</button>
             </div>
-            <div class="right-nav"></div>
-            <a href="#"><button class="Creat-btn">Create Memorial</button></a>
 
-
-            @if (auth()->check())
-            <form method = 'POST' action="{{ route('logout') }}">
+            @if(auth()->check())
+            <form method="post" action="{{route('logout')}}">
                 @csrf
-                <button class="Creat-btn">Logout</button></a>
+            <button type = 'submit' class="Creat-butt">Logout</button>
             </form>
-                @else
-                <a href="{{route('login')}}"><button class="Creat-btn">Login</button></a>
-                <a href="{{route('register')}}"><button class="Creat-btn">Register</button></a>
-                
+            @else
+           <a href="{{ route('login') }}"> <button class="Creat-butt" >Login</button></a>
+            <a href="{{ route('register') }}"> <button class="Creat-butt" >Register</button></a>
             @endif
 
-
-
+            <div class="right-fav"></div>
+            <a href="pricing.html"><button class="Creat-butt">Create Memorial</button></a>
         </div>
     </div>
-    <!-- NAVBAR   HTML  END -->
-
-    <!-- mobile  nav   html -->
-    <div class="mobile-nav">
-        <ul class="mob-nav">
-            <li class="mob-list"><a class="mob-link" href="#">Product</a></li>
-            <li class="mob-list"><a class="mob-link" href="#">Pricing</a></li>
-            <li class="mob-list"><a class="mob-link" href="#">Contact Us</a></li>
-            <li class="mob-list"><a class="mob-link" href="#">Help</a></li>
+    <!-- mobile  fav   html -->
+    <div class="mobile-fav">
+        <ul class="mob-fav">
+            <li class="mob-fist"><a class="mob-fink" href="">Product</a></li>
+            <li class="mob-fist"><a class="mob-fink" href="pricing.html">Pricing</a></li>
+            <li class="mob-fist"><a class="mob-fink" href="Contact.html">Contact Us</a></li>
+            <li class="mob-fist"><a class="mob-fink" href="Contact.html">Help</a></li>
         </ul>
     </div>
-    <!-- mobile  nav   html end -->
-
-
-
+    <!-- mobile  fav   html end -->
+</header>
+  </div>

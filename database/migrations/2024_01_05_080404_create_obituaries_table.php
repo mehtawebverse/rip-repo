@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('remembrance_day')->default('NULL');
             $table->string('full_name');
+            $table->string('religion');
             $table->string('profession')->default('NULL');
             $table->date('birth_date');
             $table->string('birth_country');

@@ -756,7 +756,7 @@ align-items: center;
                 </p>
             </div>
             <div class="box2-contentbox3">
-                <a href="card_page.html"><button class="tribute-btn"><img src='{{asset("img/flower.png")}}' alt="" width="20px">Tribute
+                <a href="{{route('routeToTributeModal',$obit->id)}}"><button class="tribute-btn"><img src='{{asset("img/flower.png")}}' alt="" width="20px">Tribute
                         Now</button></a>
                 <a href="TRIBUTE PAGE.HTML"><button class="sendflowers-btn"><img src='{{asset("img/flower.png")}}' alt="" width="20px">Send
                         Flowers</button></a>
@@ -806,18 +806,25 @@ Here you can offer your grief to the deceased in words.
                     </div>
                 </div>
                 <div class="leftsection-box2">
-                    <p style="margin-bottom: 16px;"> Here is all information about the deceased person யாழ். ஏழாலை களவாடையைப் பிறப்பிடமாகவும், சுண்ணகம் சூறாவத்தை ”கோகிலவாசம்”, கொழும்பு எசக்கிமுத்து பிளேஸ், லண்டன் Pinner ஐ வதிவிடமாகவும் கொண்டிருந்த திலகவதி சிவசிங்கம் அவர்களின் 5ம் ஆண்டு நினைவஞ்சலி.</p>
-                    <p style="margin-bottom: 16px;">யாழ். புலோலியைப் பிறப்பிடமாகவும், மருதங்கேணியை வசிப்பிடமாகவும் கொண்ட முருகன் திரவியம் அவர்கள் 02-08-2023 புதன்கிழமை அன்று காலமானார்.</p>
-                    <p style="margin-bottom: 16px;">அன்னார், காலஞ்சென்றவர்களான முருகன் சிவக்கொழுந்து தம்பதிகளின் அன்பு மகனும், காலஞ்சென்ற வல்லி, லக்சுமி தம்பதிகளின் அன்பு மருமகனும்,</p>
-                    <p style="margin-bottom: 16px;">காலஞ்சென்ற இராசேஸ்வரி அவர்களின் அன்புக் கணவரும்,</p>
-                    <p style="margin-bottom: 16px;">வரதராசா, வசந்தராசா, மனோகரன், தர்சனா ஆகியோரின் பாசமிகு தந்தையும்</p>
-                    <p style="margin-bottom: 16px;">பிருந்தா, பிரித்திகா, ஆகாஷ், அனுசன், டனுசியா, சஞ்சித், சஞ்சிகா, சஞ்சயன் ஆகியோரின் பாசமிகு பேரனும்,</p>
-                    <p style="margin-bottom: 16px;"><b>அன்னாரின் இறுதிக்கிரியை 03-08-2023 வியாழக்கிழமை அன்று பருத்தித்துறை புலோலி மத்தி அவ்வொல்லையில் உள்ள அவரது இல்லத்தில் நடைபெற்று பி.ப 02:00 மணியளவில் சுப்பர்மடம் இந்து மயானத்தில் பூதவுடல் தகனம் செய்யப்படும்.</b></p>
-                </div>
+                    <p style="margin-bottom: 16px;"> Here is all information about the deceased person </p>
+                    </div>
                 <div class="leftsection-box3">Information Source: family</div>
                 <div class="leftsection-box4">
+
+
+                    @if($obit->tributes->count()>0)
+
+                        @foreach ($obit->tributes as $tribute )
+                           <p> {{$tribute->message}} </p>
+                           <p>{{$tribute->country}}</p>
+                        @endforeach
+
+                    @else
                     <p>No Tributes Found <br>Be the first to post a tribute</p>
-                    <button class="box3-btn">Post Tribute</button>
+                    @endif
+                    
+                   
+                    <a href="{{route('routeToTributeModal',$obit->id)}}"> <button class="box3-btn">Post Tribute</button> </a>
                 </div>
         </div>
         <div class="box4-rightsection right-head">
