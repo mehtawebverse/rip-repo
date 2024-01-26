@@ -5,6 +5,30 @@
 @section('internal-css')
 <style>
 
+.modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
 
 *{
     box-sizing: border-box;
@@ -314,33 +338,44 @@ input[type=text]:focus{
             <a href="TRIBUTE PAGE.HTML"><button class="box2-btn">Tribute</button></a>
         </div>
         <form method="POST" action="{{ route('routeToSubmitLetter', $obituary->id) }}">
+            @csrf
         <div class="heading-box3">
             <p>Choose a template</p>
             <p style="font-size: 14px;  color: #5e5e5e">Write a letter of all things you forgot to say.. They will want to know.</p>
         </div>
         <div class="heading-box4">
             Letter Title
-            <input type="text" name="title" id="title" placeholder="My Last Letter to you">
+            <input type="text" name="letter_title" id="letter_title" placeholder="My Last Letter to you">
         </div>
         <div class="heading-box5">Letter Body
-            <textarea name="letter-body" id="letter-body" name="letter-body"  rows="7" placeholder="We are sorry for your loss, was such a great person, The memories will live forever with us."></textarea>
+            <textarea id="letter_body" name="letter_body"  rows="7" placeholder="We are sorry for your loss, was such a great person, The memories will live forever with us."></textarea>
             <p style="font-size: 12px;  color: #5e5e5e">Max 2000 characters allowed</p>
         </div>
         <div class="heading-box6">Signature Title
-            <input type="text" id="signature" name="signature" placeholder="Your Love">
+            <input type="text" id="signature_title" name="signature_title" placeholder="Your Love">
         </div>
         <div class="heading-box7">Letter Form
             <input type="text" id="name" name="name" placeholder="Your Name">
             <input type="text" id="relation" name="relation" placeholder="Organization or Relation">
 
         </div>
+
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closePreviewModal()">&times;</span>
+                <h2>Preview</h2>
+                <!-- Preview content will be dynamically added here -->
+                <div id="previewContent"></div>
+            </div>
+        </div>
+
         <div class="heading-box8">
             <div class="box8-smallbox1">
-                <button class="btn">Preveiw</button>
-                <a href="card_page.html"><button class="btn2">Change Tribute Type</button></a>
+                <button type="button" class="btn" onclick="showPreview()">Preview</button>
+                <a href="{{route('routeToTributeModal',$obituary->id)}}"><button type="button" class="btn2">Change Tribute Type</button></a>
             </div>
             <div class="box8-smallbox2">
-                <a class="box8-link" href="card_page.html"><p>Back</p></a>
+                <a class="box8-link" href="{{route('routeToClickedObituary',$obituary->id)}}"><p>Back</p></a>
                 <a href="continue_page.html"><button class="btn3">Continue</button></a>
             </div>
         </div>
@@ -351,5 +386,39 @@ input[type=text]:focus{
  <div class="right">
 </div>
 </div>
+
+<script>
+    function showPreview()
+    {
+        var formData = {
+            letter_title: document.getElementById('letter_title').value,
+            letter_body: document.getElementById('letter_body').value,
+            signature_title: document.getElementById('signature_title').value,
+            name: document.getElementById('name').value,
+           relation: document.getElementById('relation').value,
+        };
+        populatePreview(formData);
+
+        //Display the preview modal
+        document.getElementById('previewModal').style.display = 'block';
+
+    }
+
+    function populatePreview(formData){
+        var previewContent = '<p> <strong> Letter Title: </strong>' + formData.letter_title + '</p>';
+        previewContent += '<p> <strong> Letter Body: </strong>' + formData.letter_body + '</p>';
+        previewContent += '<p> <strong> Signature Title: </strong>' + formData.signature_title + '</p>';
+        previewContent += '<p><strong>Name:</strong> ' + formData.name + '</p>';
+        previewContent += '<p><strong>Relation:</strong> ' + formData.relation + '</p>';
+
+         // Insert the preview content into the modal
+       document.getElementById('previewContent').innerHTML = previewContent;
+    }
+
+    function closePreviewModal() {
+       document.getElementById('previewModal').style.display = 'none';
+   }
+
+</script>
 
 @endsection

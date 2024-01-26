@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('letter_title')->nullable();
             $table->string('signature_title')->nullable();
             $table->string('photo_title')->nullable();
-            // $table->binary('photos')->nullable();
+            
             $table->string('photo_caption')->nullable();
             $table->string('phone_no',20)->nullable();
             $table->string('email')->nullable();

@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Obituary;
 use App\Models\State;
 
+use App\Models\Tribute;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -37,8 +38,9 @@ class Controller extends BaseController
         $obit = Obituary::all();
         $recentObituaries = Obituary::latest()->take(5)->get();
         $countryCounts = $recentObituaries->groupBy('birth_country')->map->count();
+        $recentTributes = Tribute::latest()->take(5)->get();
 
-        return view('feeds', compact('obit','recentObituaries','countryCounts'));
+        return view('feeds', compact('obit','recentObituaries','countryCounts','recentTributes'));
     }
 
     public function testing ()

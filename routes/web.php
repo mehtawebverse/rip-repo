@@ -21,6 +21,8 @@ Route::get('ho',[Controller::class,'newHome']);
 Route::get('test',[Controller::class,'testing']);
 Route::get('tribute-modal/{id}',[TributeController::class,'tributeFor'])->name('routeToTributeModal');
 
+Route::get('st/{id}',[TributeController::class,'viewTributePage'])->name('routeToTributePage');
+
 Route::get('demo/{id}',[Controller::class,'demo'])->name('pt');
 
 Route::get('post-card/{id}',[TributeController::class,'numberOne'])->name('routeToPostCardPage');

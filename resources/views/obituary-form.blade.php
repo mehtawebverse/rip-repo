@@ -15,6 +15,12 @@
         <label for="remembrance">Remembrance:</label>
         <input type="text" id="remembrance" name="remembrance" placeholder="Enter Remembrance or keep it black" ><br>
 
+        <label for="your_name">Your Name:</label>
+        <input type="text" id="your_name" name="your_name" ><br>
+
+        <label for="your_relation">Your Relation With Deceased Person:</label>
+        <input type="text" id="your_relation" name="your_relation" ><br>
+
         <label for="full_name">Full Name:</label>
         <input type="text" id="full_name" name="full_name" ><br>
 

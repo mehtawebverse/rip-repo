@@ -36,7 +36,8 @@ class ObituaryController extends Controller
         $storingObj->profession = $request->profession;
         $storingObj->birth_date = $request->birth_date;
         $storingObj->religion = $request->religion;
-        
+        $storingObj->your_name = $request->your_name;
+        $storingObj->your_relation = $request->your_relation;
         $storingObj->birth_country = ucfirst($request->birth_country);
         $storingObj->birth_place = $request->birth_place;
         $storingObj->lived_places = $request->lived_places;

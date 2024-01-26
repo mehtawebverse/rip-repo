@@ -84,7 +84,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'lighting-card')
+@section('title', 'post-card')
 
 @section('internal-css')
     <style>
@@ -105,11 +105,45 @@
             justify-content: center;
             align-items: center;
             height: 107%;
-            background-image: url(image/bacgroung-image.png);
+            background-image: url('{{asset('/img/bacgroung-image.png')}}');
             background-repeat: no-repeat;
             background-size: contain;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: rgba(0, 0, 0, 0.5); */
+            background-image: url('{{asset('/img/library_back.jpg')}}');
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            align-items: center;
+        }
 
+        .modal-content {
+            
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+          
+        }
+
+        .modal-content ul li {
+            cursor: pointer;
+    margin-bottom: 10px; /* Adjust the value as needed for the desired spacing */
+}
+
+
+        .modal-close {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
         .left {
             height: 100%;
             width: 20%;
@@ -401,6 +435,7 @@
             .heading-box5 {
                 padding: 10px;
             }
+
         }
     </style>
 @endsection
@@ -431,14 +466,29 @@
                 <div class="heading-box3">
                     <p>Choose a card design</p>
                     <p style="font-size: 14px;  color: #5e5e5e">Show your love and presence to mark your condolences.</p>
+
+                    
+
+
+
+                    
+
+
+
+
+
+
                 </div>
+
+                
+
                 <div class="heading-box4">
                     <p>Tribute Message</p>
                     <p style="font-size: 14px;  color: #5e5e5e">Simply send a tribute message in your own words or select
                         from our library.</p>
                     </p>
                 </div>
-                <div class="heading-box5">
+                {{-- <div class="heading-box5">
                     <textarea name="message" id="message" rows="5"
                         placeholder="Simply send a tribute message in your own words or select from our library."></textarea>
                     <div class="box5-smallbox">
@@ -446,25 +496,81 @@
                                 alt="" width="20px">
                             <p style="margin-left: 10px;">Our Library</p>
                         </a>
-                        <a class="smallbox-link1" href=""><button class="smallbox-btn">Clear</button></a>
+                        <a class="smallbox-link1" href="#" onclick="clearText()"> Clear</a>
+                    </div>
+                    <p style="font-size: 12px; color: #5e5e5e;">Max 2000 characters allowed</p>
+                </div> --}}
+
+
+                <div class="heading-box5">
+                    <textarea name="message" id="message" rows="5" placeholder="Simply send a tribute message in your own words or select from our library."></textarea>
+                    <div class="box5-smallbox">
+                        <a class="smallbox-link1" href="#" onclick="openLibraryModal()">
+                            <img src='{{ asset('img/library-icone.png') }}' alt="" width="20px">
+                            <p style="margin-left: 10px;">Our Library</p>
+                        </a>
+                        <a class="smallbox-link1" href="#" onclick="clearText()">
+                            Clear
+                        </a>
                     </div>
                     <p style="font-size: 12px; color: #5e5e5e;">Max 2000 characters allowed</p>
                 </div>
+
+                <div id="libraryModal" class="modal">
+                    <div class="modal-content">
+                        <span class="modal-close" onclick="closeLibraryModal()">&times;</span>
+                        <p>Click on a statement to insert into the message:</p>
+                        <ul>
+                            <li onclick="insertText('I was saddened to hear that the beautiful person passed away. My thoughts are with you and your family')">I was saddened to hear that the beautiful person passed away. My thoughts are with you and your family</li>
+                            <hr>
+                            
+                            <li onclick="insertText('We are sorry for your loss, was such a great person, the memories will live forever with us.')">We are sorry for your loss, was such a great person, the memories will live forever with us.</li>
+                            <hr>
+                            <li onclick="insertText('I know too well of the devastation, hurt and tragedy that this will inevitably cause.')">I know too well of the devastation, hurt and tragedy that this will inevitably cause.</li>
+                            <hr>
+                            <li onclick="insertText('Anyone can be forgotten but not you who choose a life of selflessness and generosity')">Anyone can be forgotten but not you who choose a life of selflessness and generosity</li>
+                            <hr>
+                            <li onclick="insertText('Death is something all of us are bound to face. Truly, we will miss you always. However, have no worries we will meet you someday.')">Death is something all of us are bound to face. Truly, we will miss you always. However, have no worries we will meet you someday.</li>
+                            <hr>
+                            <li onclick="insertText('I am thankful to have shared memories with you. I will miss all of them truly and your impact on our family.')">I am thankful to have shared memories with you. I will miss all of them truly and your impact on our family.</li>
+                            <hr>
+                            <li onclick="insertText('Our hearts are filled with sadness and tears but our memories are filled with smiles and laughter of the good times we shared over the years')">Our hearts are filled with sadness and tears but our memories are filled with smiles and laughter of the good times we shared over the years</li>
+                            <hr>
+                            <li onclick="insertText('Grief can be so hard, but our special memories help us cope. Remembering you and your loved one today and always')">Grief can be so hard, but our special memories help us cope. Remembering you and your loved one today and always</li>
+                            <hr>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="previewModal" class="modal">
+                    <div class="modal-content">
+                        <span class="modal-close" onclick="closePreviewModal()">&times;</span>
+                        <h2>Preview</h2>
+                        <!-- Preview content will be dynamically added here -->
+                        <div id="previewContent"></div>
+                    </div>
+                </div>
+
+
+
                 <div class="heading-box6">
                     <p>Tribute by</p>
                     <p style="font-size: 14px; color: #5e5e5e;">Choose how you want your name to appear on the tribute.</p>
-                    <input type="text" id="name" name="tribute_by" placeholder="Your Name">
+                    <input type="text" id="name" name="name" placeholder="Your Name">
                     <input type="text" id="relation" name="relation" placeholder="Organization or Address or Relation">
                     <input type="text" id="country" name="country" placeholder="Country">
 
                 </div>
                 <div class="heading-box7">
                     <div class="box7-smallbox1">
-                        <button class="btn">Preveiw</button>
-                        <a href="card_page.html"><button class="btn2">Change Tribute Type</button></a>
+                        
+                       
+<button type="button" class="btn" onclick="showPreview()">Preview</button>
+
+<a href="{{route('routeToTributeModal',$obituary->id)}}"><button type="button" class="btn2">Change Tribute Type</button></a>
                     </div>
                     <div class="box7-smallbox2">
-                        <a class="box7-link" href="card_page.html">
+                        <a class="box7-link" href="{{route('routeToClickedObituary',$obituary->id)}}">
                             <p>Back</p>
                         </a>
                         <button type="submit" class="btn3">Continue</button>
@@ -475,5 +581,62 @@
     </div>
     <div class="right"></div>
     </div>
+
+    <script>
+
+function showPreview() {
+       
+        var formData = {
+            message: document.getElementById('message').value,
+            name: document.getElementById('name').value,
+            relation: document.getElementById('relation').value,
+            country: document.getElementById('country').value,
+        };
+        populatePreview(formData);
+
+// Display the preview modal
+document.getElementById('previewModal').style.display = 'block';
+}
+function populatePreview(formData) {
+        var previewContent = '<p><strong>Tribute Message:</strong> ' + formData.message + '</p>';
+        previewContent += '<p><strong>Tribute by:</strong> ' + formData.name + '</p>';
+        previewContent += '<p><strong>Relation:</strong> ' + formData.relation + '</p>';
+        previewContent += '<p><strong>Country:</strong> ' + formData.country + '</p>';
+
+        // Insert the preview content into the modal
+        document.getElementById('previewContent').innerHTML = previewContent;
+    }
+
+    // Function to close the preview modal
+    function closePreviewModal() {
+        document.getElementById('previewModal').style.display = 'none';
+    }
+
+function openLibraryModal() {
+        var modal = document.getElementById('libraryModal');
+        modal.style.display = 'flex';
+    }
+
+    function closeLibraryModal() {
+        var modal = document.getElementById('libraryModal');
+        modal.style.display = 'none';
+    }
+
+    function insertText(text) {
+        var messageTextarea = document.getElementById('message');
+        messageTextarea.value += text;
+        closeLibraryModal(); // Close the modal after inserting text
+    }
+
+function clearText(){
+    var messageTextarea = document.getElementById('message');
+    messageTextarea.value = '';
+}
+
+
+
+
+    </script>
+
 
 @endsection
