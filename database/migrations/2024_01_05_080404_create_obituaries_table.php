@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('obituaries', function (Blueprint $table) {
             $table->id();
+            $table->string('your_name');
+            $table->string('your_relation');
             $table->string('remembrance_day')->default('NULL');
             $table->string('full_name');
             $table->string('religion');

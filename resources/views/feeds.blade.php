@@ -663,7 +663,7 @@ span{
             <div class="content-footer">
                 <div class="footer-box1"><a href="#"><img src={{("img/flower.png")}} alt="" width="40px"></a>
                     <p class="footer-heading">
-                    <p><span>5</span> Tributes</p>
+                    <p><span> {{$ob->tributes->count()}} </span>Tributes</p>
                 </div>
                 <a href="{{route('pt',$ob->id)}}"><button class="footer-btn">Post Tributes</button></a>
             </div>
@@ -681,13 +681,28 @@ span{
         <div class="right-head">
             <h2>RECENT<br>TRIBUTES</h2>
         </div>
-        <div style="margin-top:10;" class="rightsection-infobox">
-            <a href="#"><img src={{("img/phone-icone.png")}} alt="" width=50px>
+        
+
+            {{-- <a href="#"><img src={{("img/phone-icone.png")}} alt="" width=50px>
                 <p class="rightbox-heading"> Late Person Name</p>
                 <p class="rightbox-heading2"> Tributes Person Name</p>
                 <p class="rightbox-time">Time</p>
+            </a> --}}
+
+            @foreach ($recentTributes as $tribute )
+            <div style="margin-top:10;" class="rightsection-infobox">
+            <a href="#"><img src={{("img/phone-icone.png")}} alt="" width=50px>
+               @if ($tribute->obituary)
+                <p class="rightbox-heading"> {{$tribute->obituary->full_name}}</p>
+                @endif
+              
+                <p class="rightbox-heading2"> {{$tribute->name}}</p>
+                <p class="rightbox-time">{{$tribute->created_at}}</p>
             </a>
         </div>
+            @endforeach
+
+       
       
         
     </div>

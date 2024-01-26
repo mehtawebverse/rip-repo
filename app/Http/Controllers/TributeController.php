@@ -94,7 +94,7 @@ class TributeController extends Controller
         $obituary = Obituary::findorFail($id);
         $tributeobj = new Tribute();
         $tributeobj->message = $request->message;
-        $tributeobj->name = $request->tribute_by;
+        $tributeobj->name = $request->name;
         $tributeobj->relation = $request->relation;
         $tributeobj->country = $request->country;
         $obituary->tributes()->save($tributeobj);
@@ -117,7 +117,7 @@ class TributeController extends Controller
         $obituary = Obituary::findorFail($id);
         $tributeobj = new Tribute();
         $tributeobj->message = $request->message;
-        $tributeobj->name = $request->tribute_by;
+        $tributeobj->name = $request->name;
         $tributeobj->relation = $request->relation;
         $tributeobj->country = $request->country;
         $obituary->tributes()->save($tributeobj);
@@ -130,7 +130,7 @@ class TributeController extends Controller
         $tributeobj->message = $request->letter_body;
         $tributeobj->letter_title = $request->letter_title;
         $tributeobj->signature_title = $request->signature_title;
-        $tributeobj->name = $request->tribute_by;
+        $tributeobj->name = $request->name;
         $tributeobj->relation = $request->relation;
         $obituary->tributes()->save($tributeobj);
     }
@@ -193,6 +193,12 @@ class TributeController extends Controller
         $tributeobj->email = $request->email ;
         $obituary->tributes()->save($tributeobj);
 
+    }
+
+    public function viewTributePage($id)
+    {
+        $obituary = Obituary::findorFail($id);
+        return view('tribute_page',compact('obituary'));
     }
 
 }

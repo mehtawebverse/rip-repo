@@ -769,10 +769,10 @@ align-items: center;
 
         <div class="box3">
             <ul class="box3-nav">
-                <li class="box3-list"><a class="box3-link" href="Home page.html">Home</a></li>
+                <li class="box3-list"><a class="box3-link" href="{{route('home')}}">Home</a></li>
                 <li class="box3-list"><a class="box3-link" href="overview-page.html">Overview</a>
                 </li>
-                <li class="box3-list"><a class="box3-link" href="TRIBUTE PAGE.HTML">Tribute</a>
+                <li class="box3-list"><a class="box3-link" href="{{route('routeToTributePage',$obit->id)}}">Tribute</a>
                 </li>
                 <li class="box3-list box3-list-active" ><a class="box3-link box3-link-active" href="Announcements_page.html">Announcements</a></li>
             </ul>
@@ -806,22 +806,60 @@ Here you can offer your grief to the deceased in words.
                     </div>
                 </div>
                 <div class="leftsection-box2">
-                    <p style="margin-bottom: 16px;"> Here is all information about the deceased person </p>
+                    <p style="margin-bottom: 16px;"> {{$obit->notification}} </p>
                     </div>
                 <div class="leftsection-box3">Information Source: family</div>
                 <div class="leftsection-box4">
-
-
                     @if($obit->tributes->count()>0)
+                    @foreach ($obit->tributes as $tribute )
+                    <div class="card-header">
+                        <span class="headgroup">
+                            <span class="head">
+                                {{$tribute->name}}
+                            </span>
+                            <span>
+                                {{$tribute->country}}
+                            </span>
+
+                            <div class="card-body">
+                                <div class="comments">
+
+                                    @foreach ($tribute->photos as $photo )
+                                    <p>
+                                        <img src="{{ asset('uploads/tribute_photos/' . $photo->path) }}" alt="Tribute Photo">
+                                    </p>
+                                @endforeach
+
+                                    <p>
+                                        {{$tribute->message}}
+                                    </p>
+                                </div>
+                            </div>
+                            @endforeach
+
+                            @else
+                    <p>No Tributes Found <br>Be the first to post a tribute</p>
+                    @endif
+
+                    {{-- @if($obit->tributes->count()>0)
 
                         @foreach ($obit->tributes as $tribute )
                            <p> {{$tribute->message}} </p>
                            <p>{{$tribute->country}}</p>
+                           
+                            
+                            @foreach ($tribute->photos as $photo )
+                                <p>
+                                    <img src="{{ asset('uploads/tribute_photos/' . $photo->path) }}" alt="Tribute Photo">
+                                </p>
+                            @endforeach
+
+                           
                         @endforeach
 
                     @else
                     <p>No Tributes Found <br>Be the first to post a tribute</p>
-                    @endif
+                    @endif --}}
                     
                    
                     <a href="{{route('routeToTributeModal',$obit->id)}}"> <button class="box3-btn">Post Tribute</button> </a>
@@ -879,7 +917,6 @@ Here you can offer your grief to the deceased in words.
                     <div class="small-box2"><a href=""><img src='{{asset("img/messenger.png")}}' alt="" width="30px"><p>Messenger</p></a></div>
                     <div class="small-box2"><a href=""><img src='{{asset("img/message.png")}}' alt="" width="30px"><p>Message</p></a></div>
                     <div class="small-box2"><a href=""><img src='{{asset("img/linked in.png")}}' alt="" width="30px"><p>Linkedin</p></a></div>
-
                 </div>
 
             </div>
